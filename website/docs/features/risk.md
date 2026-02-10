@@ -1,25 +1,29 @@
-# Institutional Risk Engine
+# Institutional Risk & Compliance Engine
 
-Every transaction on Veto undergoes a "Pre-Flight Scan" powered by our multi-layered Risk Engine.
+Veto provides a sophisticated **Institutional Risk Engine** that serves as an autonomous gatekeeper for every stablecoin transaction. By moving beyond reactive monitoring to proactive **Pre-Flight Screening**, organizations can maintain absolute compliance and operational integrity.
 
-## The Safety Scan
+## The Multi-Vector Assessment Framework
 
-Before a single dollar moves, Veto analyzes the recipient's wallet and identity against four critical vectors:
+Prior to authorizing any fund movement, the Veto Engine executes a comprehensive audit across four distinct risk vectors:
 
-### 1. Sanctions & Compliance
-Real-time clearing against OFAC, SDN, and global sanctions lists. Veto ensures you never inadvertently pay a sanctioned entity.
+### 1. Global Sanctions Hygiene
+Direct, real-time integration with global watchlists, including **OFAC, SDN, UK HMT, and EU Sanctions**. Veto ensures that no transaction interact with sanctioned individuals, entities, or jurisdictions, eliminating the risk of accidental non-compliance.
 
-### 2. Anomaly Detection
-Detects irregular patterns such as sudden surges in volume, high-velocity "hopping" between chains, or interaction with high-risk mixers.
+### 2. Behavioral Threat Intelligence
+Our engine performs deep on-chain analysis to detect high-risk behavioral patterns, such as interaction with identified mixers (e.g., Tornado Cash), rapid "chain-hopping," or participation in complex "peel chains" typically associated with asset layering and money laundering.
 
-### 3. Shadow Clone Detection
-A sophisticated security check for "Lookalike" domains and wallets that attempt to impersonate trusted vendors.
+### 3. "Shadow Clone" & Impersonation Defense
+A specialized heuristic check designed to detect **Lookalike Identity Attacks**. This includes monitoring for deceptive domain variations (homogylph attacks) and wallet address poisoning strategies used by attackers to impersonate verified vendors in the Veto Registry.
 
-### 4. Risk Scoring (0-100)
-Every scan generates a unified Risk Score.
-*   **0-25 (SAFE)**: Identity verified, no compliance flags.
-*   **26-75 (WARNING)**: Minor anomalies or unverified identity bits.
-*   **76-100 (DANGER)**: Sanctions hits or high-risk activity detected.
+### 4. Unified Risk Quantization (0-100)
+Veto synthesizes thousands of signals into a single, actionable **Risk Score**.
+*   **0-25 (Platinum Status)**: Identity fully attested; zero compliance or behavioral flags.
+*   **26-75 (Elevated Caution)**: Presence of minor anomalies, unverified infrastructure nodes, or new wallet history.
+*   **76-100 (Critical Failure)**: Confirmed sanctions match or high-confidence malicious activity.
 
-## Pre-Settlement Consensus
-Integrate Veto into your payment backend to automatically block any transaction that exceeds your organization's risk threshold.
+## Autonomous Policy Enforcement
+
+Veto’s risk engine is designed for **Zero-Trust environments**. Organizations can define automated policy responses via our API:
+*   **Hard Block**: Instantly reject any transaction with a Risk Score > 75.
+*   **Quarantine**: Place payments on hold for manual Treasury review if identity is unverified.
+*   **Whitelist Override**: Maintain internal trust lists for known-safe high-frequency counterparties.

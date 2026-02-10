@@ -1,23 +1,24 @@
 # Cryptographic Identity Attestation
 
-The core of Veto is the **Identity Engine**, which bridges the gap between traditional web identities (Domains) and blockchain identities (Wallets).
+The Veto Identity Protocol establishes a verifiable **Chain of Trust** between traditional corporate assets (Domains) and decentralized financial identifiers (Wallets). This mechanism eliminates the anonymity risk inherent in public ledger transactions.
 
-## How it Works
+## The Attestation Framework
 
-Veto uses a multi-method attestation process to verify that a specific organization owns a specific wallet address.
+Veto utilizes a multi-layered attestation architecture to ensure that every claim of ownership is cryptographically backed and independently verifiable.
 
-### 1. DNS-to-Wallet Bridge
-Businesses add a specific `_veto` TXT record to their DNS settings. Veto's engine performs a global DNS query to verify this record, creating a cryptographic link between `acme-corp.com` and `0x742d...`.
+### 1. DNSSEC-Anchored Proofs
+Organizations establish their primary identity by publishing a `_veto-identity` TXT record within their DNS zone. Veto’s engine utilizes **DNSSEC validation** to ensure that this record is authentic and hasn't been tampered with. This links the domain (e.g., `acme-corp.com`) to a specific public key (the Wallet Address).
 
-### 2. .well-known Verification
-As a fallback or secondary proof, Veto checks for a signed identity manifest at `https://domain.com/.well-known/veto.json`. This ensures proof of control over the web server infrastructure.
+### 2. Infrastructure Verification (.well-known)
+As a secondary proof of control over the organization’s web infrastructure, Veto validates a signed identity manifest hosted at `https://domain.com/.well-known/veto.json`. This ensures that the entity claiming the wallet also controls the primary business infrastructure.
 
-### 3. EIP-712 Typed Signing
-To prevent "Identity Spoofing," vendors sign a Veto Challenge using their private key. This proves they actually control the wallet they are claiming to own.
+### 3. EIP-712 Structured Signing
+To complete the bilateral link, the organization must sign a Veto Challenge using the private key of the claimed wallet. By utilizing **EIP-712 (Typed Structured Data Signing)**, the signature is human-readable and immune to "blind-signing" attacks, proving definitive control over the on-chain assets.
 
-## The Identity Registry
+## The Veto Global Registry
 
-Once verified, vendors are added to the **Veto Global Registry**.
+Successful attestations result in inclusion in the **Veto Global Registry**, a high-integrity database accessible via API and on-chain oracles.
 
-*   **Trust Scores**: Based on domain age, DNSSEC status, and history of clean transactions.
-*   **Trust Graph**: Cross-company verification signals that strengthen the vendor's reputation over time.
+*   **Trust Scores**: Dynamic reputation matrices calculated using domain vintage, DNSSEC status, and historical transaction hygiene.
+*   **Bilateral Peer Verification**: A trust-graph mechanism where established organizations can vouch for the identity of their counterparts, creating a network effect of verified trust.
+*   **Automated Revocation**: Real-time monitoring of DNS and infrastructure status; any change in control triggers an immediate "Unverified" status in the registry.

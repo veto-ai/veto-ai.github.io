@@ -1,27 +1,38 @@
-# Introduction to Veto
+# Introduction
 
-**Veto** is an Institutional-Grade **Identity & Safety Layer** for B2B Stablecoin Payments.
+**Veto** is the first institutional-grade **Identity & Safety Layer** purpose-built for the B2B stablecoin economy.
 
-In a global economy moving toward stablecoins (USDC/USDT), businesses face a massive "Anonymous Wallet" problem. Sending $100,000 to a random hexadecimal address (e.g., `0x742d...`) is high-risk. Veto solves this by cryptographically linking corporate identities to their blockchain wallets.
+In the rapidly evolving landscape of digital finance, businesses are increasingly adopting stablecoins (USDC, USDT, EURC) for cross-border settlements. However, this transition introduces a critical **Counterparty Anonymity Risk**: the inability to definitively link a 42-character hexadecimal wallet address to a verified corporate entity. 
 
-## What is Veto?
+Veto bridges this gap by providing a cryptographic attestation layer that anchors blockchain wallets to real-world corporate identities.
 
-Veto is not a payment rail—it sits **on top** of existing rails (like Ethereum, Stellar, and Solana) to provide a layer of trust and compliance before any value is moved.
+## The Problem: The Trust Gap in Digital Finance
 
-### The Value Proposition
+Traditional finance relies on the SWIFT network and regulated banking intermediaries to verify identities. In the decentralized world, payments are permissionless but blind. This leads to:
+*   **Invoice Hijacking**: Malicious actors swapping wallet addresses in PDF invoices.
+*   **Compliance Blindness**: Difficulty in performing real-time OFAC/AML screening on counterparties.
+*   **Settlement Uncertainty**: Lack of a formal "handshake" protocol leads to permanent loss of funds if sent to the wrong address.
 
-*   **Identity First**: Move from "Paying a Wallet" to "Paying a Verified Business."
-*   **Anti-Fraud**: Prevent invoice hijacking and wallet-swapping attacks.
-*   **Compliance Ready**: Automated OFAC/Sanctions screening and immutable audit logs.
-*   **Consensus-Based**: The "Two-Party Handshake" ensures both sides agree on the terms before settlement.
+## The Solution: Veto's Identity Stack
 
-## Who is Veto for?
+Veto does not move funds; it provides the **Integrity Layer** that resides above existing payment rails.
 
-1.  **Treasury Managers**: Who need institutional safety when paying global vendors.
-2.  **Compliance Officers**: Who require verifiable audit trails for stablecoin transactions.
-3.  **Payment Platforms**: Who want to offer "Verified Checkout" buttons to their users.
-4.  **B2B Vendors**: Who want to prove their identity to increase trust with buyers.
+### Core Value Drivers
+
+*   **Cryptographic Attestation**: Anchoring corporate DNS domains to blockchain addresses using EIP-712 and DNSSEC proofs.
+*   **Institutional Risk Engine**: Real-time screening against global watchlists and behavioral anomaly detection.
+*   **Bilateral Consensus (The Handshake)**: A pre-settlement protocol where both parties cryptographically confirm transaction parameters.
+*   **Document Integrity**: Automated extraction and verification of payment instructions from business documents.
+
+## Strategic Objectives
+
+Veto is designed for organizations that require the efficiency of blockchain with the safety of traditional finance:
+
+1.  **Corporate Treasuries**: Mitigate operational risk when settling high-value vendor invoices.
+2.  **Compliance & Risk Officers**: Ensure every transaction is mapped to a verified identity with a permanent audit trail.
+3.  **Payment Orchestrators**: Integrate Veto as the "Verified Identity" standard for their enterprise users.
+4.  **Issuers & VASPs**: Leverage the Veto Registry to enhance their internal KYC/KYB workflows.
 
 ---
 
-*Explore our features to see how Veto is building the future of secure B2B payments.*
+*Next: Explore our [Core Features](/features/identity) to understand the mechanics of the Veto Identity Protocol.*

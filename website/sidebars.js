@@ -2,17 +2,17 @@ module.exports = {
     tutorialSidebar: [
         {
             type: 'category',
-            label: 'Getting Started',
-            items: ['intro'],
+            label: 'Protocol Introduction',
+            items: ['intro', 'architecture'],
         },
         {
             type: 'category',
-            label: 'Core Features',
+            label: 'The Safety Stack',
             items: [
                 'features/identity',
                 'features/risk',
-                'features/shield',
                 'features/handshake',
+                'features/shield',
                 'features/monitoring',
             ],
         },

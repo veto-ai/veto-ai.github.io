@@ -15,17 +15,17 @@ function HomepageHeader() {
                 <div className={styles.heroGlow}></div>
                 <div className={styles.heroContent}>
                     <Heading as="h1" className="hero__title">
-                        The <span className={styles.highlight}>Identity & Safety</span> Layer for B2B Stablecoins
+                        The <span className={styles.highlight}>Identity & Security</span> Layer for Institutional Stablecoins
                     </Heading>
                     <p className="hero__subtitle">
-                        Bridge the gap between anonymous wallets and corporate identities.
-                        Automated compliance, fraud prevention, and identity attestation for the next generation of finance.
+                        Bridge the gap between pseudonymous wallets and verified corporate identities.
+                        Automated compliance, fraud prevention, and persistent attestation for the future of global finance.
                     </p>
                     <div className={styles.buttons}>
                         <Link
                             className="button button--primary button--lg"
                             to="/intro">
-                            Explore the Registry
+                            Access the Registry
                         </Link>
                     </div>
                 </div>
@@ -52,43 +52,43 @@ export default function Home(): JSX.Element {
     const { siteConfig } = useDocusaurusContext();
     return (
         <Layout
-            title={`${siteConfig.title} | Identity & Safety`}
-            description="Cryptographical identity verification for stablecoin payments.">
+            title={`${siteConfig.title} | Institutional Safety Layer`}
+            description="Cryptographic identity verification and risk mitigation for B2B stablecoin settlements.">
             <HomepageHeader />
             <main>
                 <section className={styles.features}>
                     <div className="container">
                         <div className="row">
                             <Feature
-                                title="Cryptographic Attestation"
-                                description="Securely link your corporate domain to your blockchain wallet using DNS and EIP-712 proofs."
+                                title="Bilateral Attestation"
+                                description="Cryptographically anchor corporate domains to blockchain identifiers using DNSSEC and EIP-712 structured proofs."
                                 icon="🔐"
                             />
                             <Feature
-                                title="Institutional Risk Engine"
-                                description="Real-time OFAC screening, anomaly detection, and shadow-clone prevention for every transaction."
+                                title="Institutional Risk Monitor"
+                                description="Real-time multi-vector screening against global sanctions (OFAC/SDN) and behavioral anomaly detection."
                                 icon="🛡️"
                             />
                             <Feature
-                                title="Document Shield"
-                                description="Automatically extract and verify wallet addresses from invoices to prevent payment hijacking."
+                                title="Document Integrity Shield"
+                                description="Autonomous extraction and cross-verification of payment instructions from procurement documents to prevent hijacking."
                                 icon="📄"
                             />
                         </div>
                         <div className="row" style={{ marginTop: '2rem' }}>
                             <Feature
-                                title="Two-Party Handshake"
-                                description="A pre-settlement consensus protocol that ensures both parties agree on terms before funds move."
+                                title="Pre-Settlement Consensus"
+                                description="A bilateral handshake protocol ensuring both parties agree on transaction parameters before on-chain execution."
                                 icon="🤝"
                             />
                             <Feature
-                                title="Global Registry"
-                                description="A verified list of corporate identities and trust scores, building the backbone of B2B trust."
+                                title="Global Identity Registry"
+                                description="The authoritative database of verified corporate wallets, trust scores, and interconnected reputation graphs."
                                 icon="🏛️"
                             />
                             <Feature
-                                title="Always-On Monitoring"
-                                description="Continuous infrastructure health checks to detect DNS hijacks or server compromises instantly."
+                                title="Persistent Infrastructure Audit"
+                                description="Continuous monitoring of counterparty security posture to detect DNS hijacks or server compromises in real-time."
                                 icon="📊"
                             />
                         </div>
@@ -99,23 +99,23 @@ export default function Home(): JSX.Element {
                     <div className="container">
                         <div className={styles.integrityCard}>
                             <div className={styles.integrityContent}>
-                                <Heading as="h2">Zero-Trust Execution</Heading>
+                                <Heading as="h2">The Foundation of Verified Finance</Heading>
                                 <p>
-                                    Veto operates on the principle of verifiable integrity. We don't ask you to trust a database;
-                                    we provide the cryptographic tools to verify identities at every step of the payment lifecycle.
+                                    Veto eliminates the "Anonymous Wallet" risk by enforcing cryptographic integrity at every stage of the payment lifecycle.
+                                    We move B2B payments from a state of blind trust to one of verifiable assurance.
                                 </p>
                                 <div className={styles.integrityGrid}>
                                     <div className={styles.integrityItem}>
-                                        <strong>Verified Logic</strong>
-                                        <span>DNSSEC-backed ownership proofs</span>
+                                        <strong>Cryptographic Authority</strong>
+                                        <span>Identity anchored to verified infrastructure</span>
                                     </div>
                                     <div className={styles.integrityItem}>
-                                        <strong>Immutable Trails</strong>
-                                        <span>Sanitized, verifiable audit logs</span>
+                                        <strong>Zero-Trust Architecture</strong>
+                                        <span>Bilateral consensus before every settlement</span>
                                     </div>
                                     <div className={styles.integrityItem}>
-                                        <strong>Autonomous Defense</strong>
-                                        <span>Real-time webhook-driven isolation</span>
+                                        <strong>Institutional Guardrails</strong>
+                                        <span>Autonomous policy enforcement and compliance</span>
                                     </div>
                                 </div>
                             </div>
