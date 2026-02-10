@@ -1,0 +1,126 @@
+.heroBanner {
+    padding: 8rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: #020617;
+    /* Slate 950 */
+    color: #f8fafc;
+}
+
+.heroContent {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.heroGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(14, 165, 233, 0) 70%);
+    filter: blur(60px);
+    z-index: 1;
+}
+
+.highlight {
+    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.features {
+    padding: 6rem 0;
+    background: #ffffff;
+}
+
+[data-theme='dark'] .features {
+    background: #020617;
+}
+
+.featureCard {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 1.25rem;
+    padding: 2.5rem;
+    height: 100%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='dark'] .featureCard {
+    background: #0f172a;
+    /* Slate 900 */
+    border-color: #1e293b;
+}
+
+.featureCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+    border-color: #38bdf8;
+}
+
+.featureIcon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.integritySection {
+    padding: 6rem 0;
+    background: #f1f5f9;
+}
+
+[data-theme='dark'] .integritySection {
+    background: #020617;
+}
+
+.integrityCard {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 2rem;
+    padding: 4rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.integrityContent {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+}
+
+.integrityGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.integrityItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.integrityItem strong {
+    font-size: 1.125rem;
+    color: #38bdf8;
+}
+
+.integrityItem span {
+    font-size: 0.875rem;
+    color: #94a3b8;
+}

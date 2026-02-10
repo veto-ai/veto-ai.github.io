@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    --ifm-color-primary: #0ea5e9;
+    /* Sky 500 */
+    --ifm-color-primary-dark: #0284c7;
+    --ifm-color-primary-darker: #0369a1;
+    --ifm-color-primary-darkest: #075985;
+    --ifm-color-primary-light: #38bdf8;
+    --ifm-color-primary-lighter: #7dd3fc;
+    --ifm-color-primary-lightest: #bae6fd;
+
+    --ifm-background-color: #ffffff;
+    --ifm-font-family-base: 'Inter', sans-serif;
+    --ifm-font-family-monospace: 'JetBrains Mono', monospace;
+
+    /* Navbar */
+    --ifm-navbar-background-color: #ffffff;
+    --ifm-navbar-link-color: #475569;
+    --ifm-navbar-link-hover-color: #0ea5e9;
+
+    /* Sidebar */
+    --ifm-menu-color: #475569;
+    --ifm-menu-color-active: #0ea5e9;
+}
+
+[data-theme='dark'] {
+    --ifm-color-primary: #38bdf8;
+    --ifm-background-color: #020617;
+    /* Slate 950 */
+    --ifm-navbar-background-color: rgba(2, 6, 23, 0.8);
+    --ifm-navbar-link-color: #94a3b8;
+
+    --ifm-menu-color: #94a3b8;
+    --ifm-menu-color-active: #38bdf8;
+
+    --ifm-card-background-color: #0f172a;
+    --ifm-toc-border-color: #1e293b;
+}
+
+/* Glassmorphism Navbar */
+.navbar {
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+[data-theme='dark'] .navbar {
+    border-bottom-color: rgba(30, 41, 59, 0.8);
+}
+
+/* Documentation Content Styling */
+.markdown h1 {
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 2rem;
+}
+
+.markdown h2 {
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    border-bottom: none;
+    margin-top: 3rem;
+}
+
+.markdown p {
+    line-height: 1.75;
+    color: #475569;
+}
+
+[data-theme='dark'] .markdown p {
+    color: #94a3b8;
+}
+
+.theme-doc-sidebar-container {
+    border-right: 1px solid #e2e8f0;
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container {
+    border-right-color: #1e293b;
+}
+
+/* Callouts / Alerts */
+.admonition {
+    border-radius: 12px;
+    border: 1px solid transparent;
+    padding: 1.25rem;
+}
