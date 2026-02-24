@@ -16,5 +16,10 @@ module.exports = {
                 'features/monitoring',
             ],
         },
+        {
+            type: 'category',
+            label: 'Developer Resources',
+            items: ['api-reference'],
+        },
     ],
 };

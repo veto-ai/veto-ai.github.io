@@ -1,122 +1,150 @@
-# Veto API Reference
+# Veto API Reference: Institutional Integration Guide
 
-Welcome to the Veto API reference. This document outlines the primary endpoints and cryptographic payloads used for institutional B2B stablecoin settlement integrity.
+This guide provides the technical specifications for integrating Veto’s Identity & Integrity layer into enterprise treasury systems, custody platforms, and payment orchestrators.
 
-## Base URL
-The API is versioned and follows RESTful principles.
-`https://api.vetoprotocol.com/api/v1`
+## Protocol Foundations
 
-## Authentication
-Veto uses **JWT-based Authentication** for user sessions and **API Keys** for server-to-server integrations.
-Headers:
-*   `Authorization: Bearer <your_jwt_token>`
-*   `X-API-Key: <your_api_key>`
+Veto operates as a **Shadow-Security Oracle**. It does not hold funds; instead, it provides a cryptographically verifiable "Clear-to-Settle" signal for high-value B2B transactions.
 
 ---
 
-## 1. Identity Attestation (The Integrity Anchor)
+## 1. Authentication & Security
 
-This flow anchors a decentralized wallet to a corporate DNS identity.
+Veto utilizes a dual-layer security model to protect institutional endpoints.
 
-### Generate Verification Challenge
+### Authentication Methods
+*   **Bearer Auth**: JWT-based session tokens for interactive dashboard actions.
+*   **API Key (X-API-Key)**: HMCA-signed headers for server-to-server (M2M) communication.
+
+### Content Integrity
+All sensitive write operations require the **`X-Veto-Signature`** header—a custom HMAC-SHA256 hash of the request body and timestamp to prevent replay attacks.
+
+---
+
+## 2. Identity Attestation (`/attestation`)
+
+Anchors a hexadecimal wallet address to a verified Corporate Domain (DNS).
+
+### Generate Challenge
 `POST /attestation/challenge`
 
-Provides the cryptographic payload and DNS instructions for a new attestation request.
+Creates an attestation intent. The response contains the **DNS Root of Trust** payload.
 
-**Request Body:**
+**Request:**
 ```json
 {
-  "domain": "galaxy.com",
+  "domain": "acme-global.com",
   "walletAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
   "chain": "ethereum"
 }
 ```
 
-**Response:**
+**Enterprise-Grade Response:**
 ```json
 {
-  "id": "att_98234",
-  "challengeText": "veto-verification:7a6f8b9...",
-  "dnsRecord": {
-    "type": "TXT",
-    "name": "_veto-identity",
-    "value": "v=veto1;address=0x742d..."
+  "attestationId": "att_v92834j",
+  "status": "CHALLENGE_ISSUED",
+  "verificationPayload": {
+    "dns": {
+      "type": "TXT",
+      "path": "_veto-auth.acme-global.com",
+      "value": "veto-proof=7a6f8b9c2d...",
+      "dnssecRequired": true
+    },
+    "wellKnown": {
+      "url": "https://acme-global.com/.well-known/veto.json",
+      "content": {
+        "address": "0x742d...",
+        "claimId": "att_v92834j"
+      }
+    }
   },
-  "wellKnownUrl": "https://galaxy.com/.well-known/veto.json"
-}
-```
-
-### Verify Attestation
-`POST /attestation/:id/verify`
-
-Submits the proof (DNSSEC/Infrastructure) and the EIP-712 wallet signature for final validation.
-
-**Request Body:**
-```json
-{
-  "signature": "0x8923... (EIP-712 Signature)",
-  "issuedAt": "2025-10-15T10:00:00Z"
+  "expiresAt": "2025-10-15T12:00:00Z"
 }
 ```
 
 ---
 
-## 2. Payment Intent & Handshake (Bilateral Consensus)
+## 3. Bilateral Consensus Handshake (`/payment-intent`)
 
-Veto ensures that both sides of a transaction acknowledge the **Intent**, **Amount**, and **Identity** before settlement occurs.
+The core protocol for preventing **Invoice Hijacking** and **Address Mutation**.
 
 ### Create Payment Intent
 `POST /payment-intent`
 
-Initiated by the sender to signal a pending settlement request to a counterparty.
+Signals a transaction intent to a verified counterparty.
 
-**Request Body:**
+**Request:**
 ```json
 {
-  "recipientDomain": "acme-supply.com",
-  "recipientWallet": "0x123...",
-  "amount": 500000.00,
+  "recipientDomain": "vendor.xyz",
+  "recipientWallet": "0x987...",
+  "amount": 1250000.00,
   "currency": "USDC",
-  "memo": "Inv #9983 - Q4 Hardware Supply"
+  "memo": "Batch-098-RawMaterials"
 }
 ```
 
-### Confirm Intent (The Handshake)
+### Handshake Confirmation (The "Consent" Payload)
 `POST /payment-intent/:id/confirm`
 
-The recipient validates the parameters and signs the intent using an EIP-712 structured message. This signature is stored as an immutable proof of consensus.
+The recipient validates the intent via their custody interface and provides an **EIP-712 Signature**. This signature acts as a **Pre-Settlement Receipt**.
 
-**Request Body:**
+**Request:**
 ```json
 {
-  "recipientSignature": "0x9fac... (EIP-712 Signature)"
+  "recipientSignature": "0x... (EIP-712 Typed Signature)",
+  "v": 27,
+  "r": "0x...",
+  "s": "0x..."
 }
 ```
 
 ---
 
-## 3. Institutional Risk Engine
+## 4. Institutional Risk Engine (`/scan`)
 
-### Scan Payment Target
+Performs real-time AML/Sanctions screening before the final settlement execution.
+
+### Target Scan
 `POST /scan/wallet`
 
-Performs a pre-flight check across global sanctions lists and behavioral risk models.
-
-**Request Body:**
+**Response:**
 ```json
 {
-  "walletAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
-  "amount": 50000,
-  "currency": "USDT"
+  "riskScore": 12,
+  "status": "CLEAR",
+  "signals": {
+    "sanctionsMatch": false,
+    "highRiskExchange": false,
+    "mixerProximity": 0,
+    "identityMatch": "VERIFIED_VENDOR"
+  },
+  "auditToken": "v-proof-99238..."
 }
 ```
 
 ---
 
-## Cryptographic Standards (For Security Audits)
+## 5. Webhooks & Event Streams
 
-Veto adheres to institutional-grade cryptographic standards to ensure non-repudiation and safety:
+Veto supports event-driven workflows for automated Treasury Management Systems (TMS).
 
-*   **Signature Scheme**: EIP-712 (Typed Data Signing) for human-readable transaction intent.
-*   **Identity Anchor**: DNSSEC (Domain Name System Security Extensions) for verified authority linkage.
-*   **Auditability**: All successful handshakes generate a unique `Identity Checksum` that can be queried on-chain.
+### Supported Events:
+*   `attestation.verified`: Emitted when a new vendor identity is anchored.
+*   `handshake.confirmed`: Emitted when a counterparty signs a payment intent.
+*   `scan.alert`: High-priority alert for high-risk wallet interactions.
+*   `registry.updated`: Signal for local cache invalidation of the verified list.
+
+---
+
+## Privacy & Security Considerations (Institutional FAQ)
+
+### Q: Does Veto introduce a Web2 dependency via DNS?
+**A:** DNS/DNSSEC acts as the **Discovery Layer**. Settlement finality is guarded by **EIP-712 (Web3)**. A DNS hijack cannot trigger a payment because the intruder lacks the counterparty's private keys required for the Handshake Confirmation.
+
+### Q: How do you prevent Public Registry Leakage?
+**A:** Veto supports **Stealth Attestations**. Organizations can choose to hide their wallet-domain mappings from the public API, making them queryable only by authenticated peers with a valid **Handshake Token**.
+
+### Q: What is the plan for Privacy-Preserving Proofs?
+**A:** Our roadmap includes **ZK-Proofs for DNSSEC Path Validation**, allowing institutions to prove domain control to the Veto Oracle without exposing the underlying TXT records or IP infrastructure to the network.

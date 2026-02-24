@@ -35,4 +35,4 @@ Veto is designed for organizations that require the efficiency of blockchain wit
 
 ---
 
-*Next: Explore our [Core Features](/features/identity) to understand the mechanics of the Veto Identity Protocol.*
+*Next: Explore our [Core Features](/features/identity) and the [API Reference](/api-reference).*
